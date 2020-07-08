@@ -1,0 +1,1 @@
+<img style="width: 85%; height: 85%; margin: 2em;" src="graphics/map-schools.png" />

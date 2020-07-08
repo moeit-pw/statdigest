@@ -1,0 +1,81 @@
+<html>
+<head>
+	<title>Stat Yearbook 2018</title>
+    <link rel="stylesheet" type="text/css" href="assets/main.css">
+	<script type='text/javascript' language='javacript' src='assets/main.js'></script>
+    <script type='text/javascript'>
+    	//set some unversal variables
+    	var page = "Summary";
+		var qGet = new URLSearchParams(location.search);
+		//wait for page to fully load, then run the javascripts
+		window.onload = function() { main(); }
+    </script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td style="width: 12%;">
+				<a href="?">
+					<img style="width: 100%; height: auto;" src="graphics/MOE_logo.gif" />
+				</a>
+			</td> 
+			<td style="width: 76%; text-align: center;"><h1 style="padding-top: .75em">Ministry of Education<br />Statistics Yearbook 2018</h1></td>
+		</tr>
+	</table>
+
+	<div id=toplinks>
+		[ <a href="?">Summary</a> ]
+		[ <a href="?v=Foreword">Foreword</a> ]
+		[ <a href="?v=TOC">TOC</a> ]
+		[ <a href="?v=Tables">Tables</a> ]
+		[ <a href="?v=Figures">Figures</a> ]<br />
+		[ <a href="?v=Introduction">Introduction</a> ]
+		[ <a href="?v=Map Palau">Map Palau</a> ]
+		[ <a href="?v=Map Schools">Map Schools</a> ]
+		[ <a href="?v=Abbreviations">Abbreviations</a> ]<br />
+		[ <a href="?v=Education System">Education System</a> ]
+		[ <a href="?v=School Info">School Info</a> ]
+		[ <a href="?v=Student Assessment">Student Assessment</a> ]<br />
+		[ <a href="?v=Fiscal Info">Fiscal Info</a> ]
+		[ <a href="?v=Master Plan">Master Plan</a> ]
+		[ <a href="?v=Key Indicators">Key Indicators</a> ]
+	</div>
+
+	<div id=page style="float: left; font-size: x-large; font-weight: bold;"></div>
+	
+	<div style="clear: both;"></div>
+
+	<hr />
+
+	<div id=content>
+	</div>
+
+	<!-- <iframe frameborder=0 style="overflow: hidden; height: 100%; width: 100%; position: absolute;" src="1. foreword.html"></iframe> -->
+
+	<script type="text/javascript">
+		//gets the http query
+		var qGet = new URLSearchParams(location.search);
+		let v;
+
+		//if(qGet.has("v")) {
+		if(qGet.get("v")) {
+			v=qGet.get("v");
+		} else {
+			v = "Summary";
+		}
+
+		fetch("tpls/" + v + ".tpl").then(
+			response => {
+				return response.text();
+			}
+		).then(
+			data => {
+				document.getElementById("page").innerHTML = v;
+				document.getElementById("content").innerHTML = data;
+			}
+		);
+
+	</script>
+
+</body>
+</html>
